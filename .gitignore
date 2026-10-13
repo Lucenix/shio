@@ -72,3 +72,4 @@ test/test_runner
 
 ## Results of local runs (local_scripts/launch_hierarchy.sh)
 results/
+/c16_metadata
