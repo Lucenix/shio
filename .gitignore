@@ -72,4 +72,10 @@ test/test_runner
 
 ## Results of local runs (local_scripts/launch_hierarchy.sh)
 results/
+
+outputs/
 /c16_metadata
+/__MACOSX
+*.zip
+/padll_evaluation_results
+__pycache__/

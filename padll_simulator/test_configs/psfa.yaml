@@ -1,0 +1,2 @@
+control_application: psfa
+predefined_allocation: "cheferd_priorities.csv"

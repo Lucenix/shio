@@ -1,0 +1,2 @@
+control_application: dynamic_max_min
+predefined_allocation: "cheferd_reversed_priorities.csv"

@@ -6,7 +6,7 @@ endif()
 
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
-project(paddl_simulator LANGUAGES CXX)
+project(padll_simulator LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -26,17 +26,43 @@ FetchContent_Declare(
     GIT_TAG ${CSVPARSER_VERSION}
 )
 
-FetchContent_MakeAvailable(csv)
+FetchContent_Declare(
+    yaml-cpp
+    GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+    GIT_SHALLOW TRUE
+    GIT_TAG yaml-cpp-0.9.0
+)
 
-add_executable(paddl_simulator simulator.cpp)
+set(YAML_CPP_BUILD_TESTS OFF CACHE BOOL "Disable yaml-cpp tests" FORCE)
+set(YAML_BUILD_SHARED_LIBS OFF CACHE BOOL "Build yaml-cpp as static lib" FORCE)
+set(BUILD_TESTING OFF CACHE BOOL "Disable yaml-cpp test targets" FORCE)
 
-target_include_directories(paddl_simulator SYSTEM PRIVATE
+FetchContent_MakeAvailable(csv yaml-cpp)
+
+add_executable(
+    padll_simulator
+    src/simulator.cpp
+    src/control_application/control_application.cpp
+    src/control_application/control_application_config_parser.cpp
+    src/control_application/static_control_application.cpp
+    src/control_application/dynamic_max_min_control_application.cpp
+    src/control_application/psfa_control_application.cpp
+    src/data/bandwidths.cpp
+    src/data/node_stats.cpp
+)
+
+target_include_directories(padll_simulator PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
+
+target_include_directories(padll_simulator SYSTEM PRIVATE
     "${csv_SOURCE_DIR}/include"
+    "${yaml-cpp_SOURCE_DIR}/include"
 )
 
 if (UNIX AND NOT APPLE)
     message(STATUS "Detecting UNIX (!Apple)")
-    target_compile_options(paddl_simulator PRIVATE
+    target_compile_options(padll_simulator PRIVATE
         -g
         -pthread
         -Wall
@@ -65,14 +91,14 @@ if (UNIX AND NOT APPLE)
         -fPIC
         -fpermissive
     )
-    target_link_libraries(paddl_simulator PRIVATE pthread dl)
+    target_link_libraries(padll_simulator PRIVATE pthread dl)
 endif()
 
 option(ENABLE_ASAN "Build with AddressSanitizer + UndefinedBehaviorSanitizer instrumentation" OFF)
 if (ENABLE_ASAN)
     message(STATUS "AddressSanitizer/UBSan enabled")
-    target_compile_options(paddl_simulator PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all)
-    target_link_options(paddl_simulator PRIVATE -fsanitize=address,undefined)
+    target_compile_options(padll_simulator PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all)
+    target_link_options(padll_simulator PRIVATE -fsanitize=address,undefined)
 endif ()
 
-target_link_libraries(paddl_simulator PRIVATE csv)
+target_link_libraries(padll_simulator PRIVATE csv yaml-cpp)
