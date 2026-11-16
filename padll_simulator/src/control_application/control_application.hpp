@@ -15,9 +15,7 @@
 
 class ControlApplication {
 public:
-    std::vector<NodeStats> node_stats;
-
-    ControlApplication(uint64_t node_count_, Bandwidths total_system_bandwidth_);
+    ControlApplication(std::vector<NodeStats*> node_stats_, Bandwidths total_system_bandwidth_);
 
     virtual ~ControlApplication() = default;
 
@@ -27,6 +25,7 @@ public:
 
     virtual bool enforce(uint64_t timestamp, std::unordered_map<uint64_t, Bandwidths>& computed_bandwidths);
 
+    std::vector<NodeStats*> node_stats;
     uint64_t node_count;
     Bandwidths total_system_bandwidth;
 };

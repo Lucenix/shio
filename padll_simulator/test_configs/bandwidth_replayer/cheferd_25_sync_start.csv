@@ -1,0 +1,5 @@
+start_timestamp,stats_timeseries_file,priority
+0,/workspaces/HASLab/shio/padll_simulator/bandwidth_traces/cheferd/baseline/25_n0.csv,0
+0,/workspaces/HASLab/shio/padll_simulator/bandwidth_traces/cheferd/baseline/25_n1.csv,1
+0,/workspaces/HASLab/shio/padll_simulator/bandwidth_traces/cheferd/baseline/25_n2.csv,2
+0,/workspaces/HASLab/shio/padll_simulator/bandwidth_traces/cheferd/baseline/25_n3.csv,3

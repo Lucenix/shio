@@ -1,0 +1,2 @@
+control_application: static
+predefined_allocation: "node_priorities/cheferd_priorities.csv"

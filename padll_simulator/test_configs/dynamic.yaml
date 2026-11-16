@@ -1,2 +1,2 @@
 control_application: dynamic_max_min
-predefined_allocation: "cheferd_priorities.csv"
+predefined_allocation: "node_priorities/cheferd_priorities.csv"

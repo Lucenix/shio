@@ -1,9 +1,6 @@
 #include "node_stats.hpp"
 
 void NodeStats::gather(uint64_t timestamp, const Bandwidths& gathered_bandwidth) {
-    if (start_time == INT64_MAX) {
-        start_time = timestamp - 1;
-    }
     original_time = timestamp;
     requested_bandwidths.gather(gathered_bandwidth);
 }

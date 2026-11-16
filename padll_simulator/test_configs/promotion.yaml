@@ -1,0 +1,3 @@
+control_application: promotion
+predefined_allocation: "node_priorities/cheferd_priorities.csv"
+node_priorities: "node_priorities/test_replayer.csv"

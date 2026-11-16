@@ -47,8 +47,11 @@ add_executable(
     src/control_application/static_control_application.cpp
     src/control_application/dynamic_max_min_control_application.cpp
     src/control_application/psfa_control_application.cpp
+    src/control_application/promotion_control_application.cpp
     src/data/bandwidths.cpp
     src/data/node_stats.cpp
+    src/data/workload_replayer.cpp
+    src/data/node_replayer.cpp
 )
 
 target_include_directories(padll_simulator PRIVATE

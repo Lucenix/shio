@@ -18,7 +18,7 @@ public:
 
     static std::unique_ptr<ControlApplication> create_from_yaml(
         const std::filesystem::path& config_path,
-        uint64_t node_count);
+        std::vector<NodeStats*> node_stats);
 
     template <typename T>
     static T parse_entry(const YAML::Node& node, const std::string& entry) {
@@ -45,7 +45,7 @@ public:
         std::function<std::unique_ptr<ControlApplication>(
             const YAML::Node& root,
             const std::filesystem::path& config_path,
-            uint64_t node_count,
+            std::vector<NodeStats*> node_stats,
             Bandwidths total_system_bandwidth)>> application_map;
 
 };

@@ -28,11 +28,11 @@ def split_csv(input_file):
         output_df = df[[first_col] + pair]
         output_df = output_df.drop(output_df[(output_df[first_col] < 0) | (output_df[first_col] > 2160)].index)
 
-        output_file = f"15_baseline_n{i}.csv"
+        output_file = f"25_n{i}.csv"
         output_df.to_csv(output_file, index=False)
 
         print(f"Created {output_file}")
 
 
 # Run the script
-split_csv("15_baseline_stacked.csv")
+split_csv("25_stacked.csv")

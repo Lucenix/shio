@@ -79,3 +79,4 @@ outputs/
 *.zip
 /padll_evaluation_results
 __pycache__/
+/data_plane/realistic_dp/trace_replayer/traces_collected
